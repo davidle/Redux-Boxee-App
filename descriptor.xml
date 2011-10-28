@@ -1,0 +1,16 @@
+<app>
+  <id>redux</id>
+  <name>BBC Redux</name>
+  <version>0.1</version>
+  <description>BBC Redux player</description>
+  <thumb>http://g.bbcredux.com/static/betamax.gif</thumb>
+  <repository> </repository>
+  <media>video</media>
+  <copyright>BBC RD</copyright>
+  <email>david.lewis/4@bbc.co.uk</email>
+  <type>skin</type>
+  <startWindow>start</startWindow>
+  <platform>all</platform>
+  <minversion>0.9.21</minversion>
+  <test-app>true</test-app>
+</app>
