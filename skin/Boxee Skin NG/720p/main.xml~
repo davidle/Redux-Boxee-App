@@ -22,6 +22,7 @@
 		     <width>400</width>
 		     <height>50</height>
 		     <colordiffuse>FF88FFFF</colordiffuse>
+		     <fadetime>200</fadetime>
 		     <texture>bbc.gif</texture>
 		     <aspectratio>keep</aspectratio>
 	    </control>
