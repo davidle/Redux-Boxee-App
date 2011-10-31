@@ -1,9 +1,0 @@
-This is a boxee app for accessing BBC Redux programmes. You'll need an existing Redux login to use this, see www.bbcredux.com. It uses the rss feeds from devapi.bbcredux.com.
-
-To use:
-Copy the Redux-Boxee-App directory into -
-Linux: 	~/.boxee/UserData/apps/ 
-Windows XP: C:\Users\[You]\Application Data\BOXEE\userdata\apps\ 
-Windows 7: C:\Users\[You\AppData\Roaming\BOXEE\userdata\apps\ 
-
-Run Boxee and pick the BBC Redux app
