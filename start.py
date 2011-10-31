@@ -64,9 +64,7 @@ def search(terms):
 
 #Check if we're authenticated on Redux
 def loginCheck():
-	#Not convinced this is sane, always returns a 401, might need an api addition
-	req = urllib2.Request('http://devapi.bbcredux.com/programme/bbchd/2011-09-18/18-00-00/media/mp4-hi/')
-	req.get_method = lambda : 'HEAD'
+	req = urllib2.Request('http://devapi.bbcredux.com/user/')
 	try:
 		response = urllib2.urlopen(req)
 		print 'Auth check success:'
