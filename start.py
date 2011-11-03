@@ -43,7 +43,6 @@ def continueLoading():
 	mc.ActivateWindow(14000)
 	replaceList('rss://devapi.bbcredux.com/latest.rss/2m-mp4+mp3?channel=bbcone')
 	mc.HideDialogWait()
-	loadTopShows()
 	
 #Replaces the list in the main part of the screen with an Rss feed from rssUrl 	
 def replaceList(rssUrl):
