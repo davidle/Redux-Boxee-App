@@ -3,6 +3,9 @@ import mc
 import urllib
 import urllib2
 from urllib2 import Request, urlopen, URLError, HTTPError
+import simplejson as json
+
+
 
 #Requests login details from users
 #Returns [username, password]
@@ -40,6 +43,7 @@ def continueLoading():
 	mc.ActivateWindow(14000)
 	replaceList('rss://devapi.bbcredux.com/latest.rss/2m-mp4+mp3?channel=bbcone')
 	mc.HideDialogWait()
+	loadTopShows()
 	
 #Replaces the list in the main part of the screen with an Rss feed from rssUrl 	
 def replaceList(rssUrl):
@@ -64,24 +68,31 @@ def search(terms):
 
 #Check if we're authenticated on Redux
 def loginCheck():
-	req = urllib2.Request('http://devapi.bbcredux.com/user/')
+	data = mc.Http().Get('http://devapi.bbcredux.com/user/')
+
 	try:
-		response = urllib2.urlopen(req)
-		print 'Auth check success:'
-		print response.read()
-		print response.code
-		return True
-	except HTTPError, e:
-		print 'Auth check error:'
-		print e.code
-		print e.read()
-		if e.code != 401:
+		jsonData = json.loads(data)
+		if jsonData['activated'] == 1:
+			print 'Auth check success:'
 			return True
+		else:
+			return False
+	except AttributeError, e:
+		print 'Auth check error:'
+		print e
 		return False
+
 	
+#Clear login details from Boxee store
+def clearLogin():
+	config = mc.GetApp().GetLocalConfig()
+	config.Reset('ReduxName')
+	config.Reset('ReduxPass')
+	mc.ShowDialogNotification("Cleared login details")
+
+
 
 #Start here:
-
 mc.ShowDialogWait()
 
 #Check redux login status
@@ -112,20 +123,19 @@ else:
 	#Login/get a cookie
 	getNewCookie(loginDetails)
 	
-	#This bit should check if the login worked
-	#keeps returning a 401 though
-	#authResult2 = loginCheck()
+	#Check if the login worked
+	authResult2 = loginCheck()
 
-	#if authResult2:
-	continueLoading()
-	'''else:
+	if authResult2:
+		continueLoading()
+	else:
 		mc.ShowDialogNotification("Unable to login to Redux")
 		config = mc.GetApp().GetLocalConfig()
 		config.Reset('ReduxName')
 		config.Reset('ReduxPass')
 		mc.HideDialogWait()
 		mc.GetApp().Close()
-'''
+
 	
 	
 	
